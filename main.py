@@ -17,11 +17,11 @@ def get_outages(bill_id, from_date, to_date):
 
     data = o.json()["data"]
 
-    # همه‌ی خاموشی‌هایی که آدرسشون شامل کلیدواژه‌ست
     my_outages = [item for item in data if KEYWORD in item["outage_address"]]
 
     return my_outages
 
 
 outages = get_outages("1465176505229", "1405/04/24", "1405/04/29")
+
 print(outages)
