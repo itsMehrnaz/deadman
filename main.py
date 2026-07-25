@@ -48,9 +48,11 @@ def check_shutdown(outages):
                 print(start_time)   
                 diff = start_time - now_minuts
                 print(diff) 
-                if (diff <= 10 and diff > 0):
-                     print("shutdown")
-                     ###subprocess.run(["systemctl", "poweroff", "-i"])
+                if 0 < diff <= 5:
+                    subprocess.run(["systemctl", "poweroff", "-i"])
+                    return "shutdown"
+                elif 5 < diff <= 15:
+                    subprocess.run(["notify-send", "shutdown alert!!", "There's only few minutes to shutdown! save your work!"])
 
     return "ok"
 
@@ -73,7 +75,7 @@ try:
             try:
                 outages = get_outages("1465176505229", formatted_today, formatted_end)
             except Exception as e:
-                print("خطا در گرفتن داده، دور بعد دوباره تلاش می‌کنم:", e)
+                print("i had problem to fetch data, i'll try again:", e)
             i = 0
             print("still working")     
 except KeyboardInterrupt:
