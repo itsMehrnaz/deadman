@@ -50,7 +50,7 @@ def check_shutdown(outages):
                 print(diff) 
                 if (diff <= 10 and diff > 0):
                      print("shutdown")
-                     ###subprocess.run(["shutdown", "-h", "now"])
+                     ###subprocess.run(["systemctl", "poweroff", "-i"])
 
     return "ok"
 
