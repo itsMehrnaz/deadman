@@ -64,7 +64,7 @@ Open `main.py` and set the following near the top of the file:
 | Variable  | Meaning                                              |
 |-----------|------------------------------------------------------|
 | `TOKEN`   | The `Bearer` token copied from the request headers   |
-| `KEYWORD` | A distinctive part of your address, exactly as it appears in the outage data (e.g. `"بعثت 10"`) |
+| `KEYWORD` | A distinctive part of your address, exactly as it appears in the outage data (e.g. `"مطهری"`) |
 | `bill_id` | Your billing account ID (passed into `get_outages`)  |
 
 > **Note on the address keyword:** match it exactly against the `outage_address` field returned by the API, including digit style. Persian and English digits are *not* interchangeable — `"10"` and `"۱۰"` are different strings.
