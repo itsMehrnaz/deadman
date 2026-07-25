@@ -62,15 +62,21 @@ check_shutdown(outages)
 
 i = 0
 
-while True:
-     check_shutdown(outages)
-     time.sleep(60)
+try:
+    while True:
+        check_shutdown(outages)
+        time.sleep(60)
 
-     i = i + 1
+        i = i + 1
 
-     if i == 60:
-          outages = get_outages("1465176505229", "1405/04/24", "1405/04/29")
-          i = 0
-          print("still working")     
-    
+        if i == 60:
+            try:
+                outages = get_outages("1465176505229", formatted_today, formatted_end)
+            except Exception as e:
+                print("خطا در گرفتن داده، دور بعد دوباره تلاش می‌کنم:", e)
+            i = 0
+            print("still working")     
+except KeyboardInterrupt:
+    print("Program terminated by user.")    
+
      
