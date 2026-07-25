@@ -2,6 +2,7 @@ import requests
 import jdatetime
 import subprocess
 import time
+from datetime import timedelta
 
 TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IntcIlVzZXJJcFwiOm51bGwsXCJVc2VySWRcIjoxNjMzMzQ3NyxcIlNlc3Npb25LZXlcIjpudWxsfSIsImV4cCI6MTc5OTk3MTUzNywiaWF0IjoxNzg0MDczOTM3LCJuYmYiOjE3ODQwNzM5Mzd9.1sP_FB2FfkfPUVAcax8bUdKdyVd5-80E3j13NUMCC7I"  
 KEYWORD = "بعثت 10"
@@ -25,15 +26,18 @@ def get_outages(bill_id, from_date, to_date):
     return my_outages
 
 
-outages = get_outages("1465176505229", "1405/04/24", "1405/04/29")
 
-print(outages)
 
+
+today = jdatetime.date.today()
+formatted_today = today.strftime("%Y/%m/%d")
+
+end = today + timedelta(days=3)
+formatted_end = end.strftime("%Y/%m/%d")
 
 
 def check_shutdown(outages):
     now = jdatetime.datetime.now()
-    today = jdatetime.date.today()
     for outage in outages:
         if (str(outage["outage_date"]) == str(today)):
                 now_minuts = int(now.hour * 60 + now.minute)
@@ -49,6 +53,9 @@ def check_shutdown(outages):
                      ###subprocess.run(["shutdown", "-h", "now"])
 
     return "ok"
+
+outages = get_outages("1465176505229", formatted_today, formatted_end)
+print(outages)
 
 check_shutdown(outages)
 
