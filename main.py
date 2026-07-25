@@ -3,9 +3,17 @@ import jdatetime
 import subprocess
 import time
 from datetime import timedelta
+import os
 
-TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IntcIlVzZXJJcFwiOm51bGwsXCJVc2VySWRcIjoxNjMzMzQ3NyxcIlNlc3Npb25LZXlcIjpudWxsfSIsImV4cCI6MTc5OTk3MTUzNywiaWF0IjoxNzg0MDczOTM3LCJuYmYiOjE3ODQwNzM5Mzd9.1sP_FB2FfkfPUVAcax8bUdKdyVd5-80E3j13NUMCC7I"  
-KEYWORD = "بعثت 10"
+def load_token():
+    with open(".env") as f:
+        for line in f:
+            if line.startswith("TOKEN="):
+                return line.strip().split("=", 1)[1]
+
+TOKEN = load_token()
+
+KEYWORD = "YOUR_ADDRESS"
 
 def get_outages(bill_id, from_date, to_date):
     url = 'https://uiapi2.saapa.ir/api/ebills/PlannedBlackoutsReport'
