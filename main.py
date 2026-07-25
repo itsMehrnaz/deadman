@@ -13,7 +13,7 @@ def load_token():
 
 TOKEN = load_token()
 
-KEYWORD = "YOUR_ADDRESS"
+KEYWORD = "بعثت 10"
 
 def get_outages(bill_id, from_date, to_date):
     url = 'https://uiapi2.saapa.ir/api/ebills/PlannedBlackoutsReport'
